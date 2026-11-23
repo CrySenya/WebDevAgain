@@ -6,9 +6,14 @@
     <meta charset="UTF-8">
     <title> Jaro Animation Studio </title>
     <link rel="stylesheet" href="styles/ContactUs.css">
+    <script src="scripts/contact.js" defer></script>
 </head>
 
 <body>
+    <video autoplay loop muted playsinline class="bg-video" aria-hidden="true">
+        <source src="Assets/pracAnimation2.0.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay" aria-hidden="true"></div>
     <header>
         <nav>
             <ul class="nav-side">
@@ -20,16 +25,16 @@
                 </a>
             <ul class="nav-side">
                 <li><a href="Gallery.html">Gallery</a></li>
-                <li><a href="ContactUs.html">Contact Us</a></li>
+                <li><a href="ContactUs.html" aria-current="page">Contact Us</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-            <div class="waveDivider contactDivider"></div>
 
             <section class="main-header">
-                <div class="waveText">
+                <p class="title-kicker"><span aria-hidden="true"></span>Jaro Animation Studio · Iloilo City<span aria-hidden="true"></span></p>
+                <h1 class="waveText" aria-label="Contact us!">
                     <span>C</span>
                     <span>O</span>
                     <span>N</span>
@@ -41,65 +46,66 @@
                     <span>U</span>
                     <span>S</span>
                     <span>!</span>
-                </div>
+                </h1>
+                <p class="title-subtitle">Every great story starts with a little hello.</p>
             </section>
 
             <section class="content">
-                <form class="contact-form">
-                    <h2>Be Apart of Our Ever-Growing </h2>
-                    <h1><span>Community!</span></h1>
+                <div class="mail-station">
+                  <p class="mail-instruction" id="mail-instruction">A little letter. A world of possibilities.</p>
+                  <div class="envelope" id="envelope">
+                    <div class="envelope-back" aria-hidden="true"></div>
+                    <div class="letter-placeholder" id="letter-placeholder" hidden aria-hidden="true"></div>
+                    <article class="letter" id="letter">
+                      <div class="letter-heading">
+                        <div class="letter-meta"><span>JARO ANIMATION STUDIO</span><span>No. <span id="letter-number">001</span></span></div>
+                        <p class="letter-salutation">Dear future storyteller,</p>
+                        <h2 id="letter-title">Let’s create <em>something great.</em></h2>
+                        <p>A place for your ideas, your art, and your next chapter.</p>
+                      </div>
+                <form class="contact-form" id="contact-form" inert aria-label="Community application">
                     <div class="row">
                         <div>
                             <label for="name">Name:</label>
-                            <input type="text" id="name" name="name" placeholder="Juan Dela Cruz" required>
+                            <input type="text" id="name" name="name" placeholder="Juan Dela Cruz" autocomplete="name" required>
                         </div>
                         <div>
                             <label for="email">Email Address:</label>
-                            <input type="email" id="email" name="email" placeholder="juan@example.com" required>
+                            <input type="email" id="email" name="email" placeholder="juan@example.com" autocomplete="email" required>
                         </div>
                     </div>
-
                     <div class="row">
                         <div>
                             <label for="phone">Phone:</label>
-                            <input type="tel" id="phone" name="phone" placeholder="+63 912 345 6789" required>
+                            <input type="tel" id="phone" name="phone" placeholder="+63 912 345 6789" autocomplete="tel" required>
                         </div>
                         <div>
                             <label for="date">Date of Birth:</label>
-                            <input type="date" id="date" name="date" required>
+                            <input type="date" id="date" name="date" autocomplete="bday" required>
                         </div>
                         <div>
                             <label for="age">Age:</label>
-                            <input type="number" id="age" name="age" placeholder="20" required>
+                            <input type="number" id="age" name="age" placeholder="20" min="1" max="120" required>
                         </div>
                     </div>
-
                     <div class="row">
                         <div>
-                            <label for="gender">Gender:</label>
-                            <div class="radio-group">
+                            <span id="gender-label" class="field-label">Gender:</span>
+                            <div class="radio-group" role="group" aria-labelledby="gender-label">
                                 <label><input type="radio" name="gender" value="male" required> Male</label>
                                 <label><input type="radio" name="gender" value="female"> Female</label>
                                 <label><input type="radio" name="gender" value="other"> Prefer not to say</label>
                             </div>
                         </div>
-                        <label for="position">Position Applying For:</label>
-                        <div class="checkbox-group"> 
-                            <div>
-                                <label for="positionAnimator">Animator</label>
-                                <input type="checkbox" id="positionAnimator" name="positionAnimator" value="Animator">
+                        <div class="positions">
+                            <span id="position-label" class="field-label">Position Applying For:</span>
+                            <div class="checkbox-group" role="group" aria-labelledby="position-label">
+                                <div><label for="positionAnimator">Animator</label><input type="checkbox" id="positionAnimator" name="positionAnimator" value="Animator"></div>
+                                <div><label for="positionIllustrator">Illustrator</label><input type="checkbox" id="positionIllustrator" name="positionIllustrator" value="Illustrator"></div>
+                                <div><label for="positionGraphicDesigner">Graphic Designer</label><input type="checkbox" id="positionGraphicDesigner" name="positionGraphicDesigner" value="GraphicDesigner"></div>
                             </div>
-                            <div>
-                                <label for="positionIllustrator">Illustrator</label>
-                                <input type="checkbox" id="positionIllustrator" name="positionIllustrator" value="Illustrator">
-                            </div>    
-                            <div>
-                                <label for="positionGraphicDesigner">Graphic Designer</label>
-                                <input type="checkbox" id="positionGraphicDesigner" name="positionGraphicDesigner" value="GraphicDesigner">
-                            </div> 
                         </div>
                     </div>
-
                     <div class="row single-field">
                         <div>
                             <label for="schedule">Preferred Schedule:</label>
@@ -111,28 +117,33 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="row single-field">
                         <div>
                             <label for="message">Expectations:</label>
                             <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
                         </div>
                     </div>
-
                     <div class="row single-field">
                         <div>
                             <label for="resume">Upload Works/Resume:</label>
                             <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx,.jpg,.png" required>
                         </div>
                     </div>
-
                     <div class="form-actions">
-                        <button type="submit">Submit <span aria-hidden="true">→</span></button>
+                        <button type="submit">Submit letter <span aria-hidden="true">→</span></button>
                         <button type="reset">Reset</button>
                     </div>
+                    <p class="preview-note">Interactive preview — your details and files are not sent or saved.</p>
                 </form>
+                    </article>
+                    <div class="envelope-front" aria-hidden="true"></div>
+                    <div class="envelope-address" aria-hidden="true"><span>TO OUR NEXT CREATIVE MIND</span><span class="seal">JAS</span><span>Jaro, Iloilo City · Philippines</span></div>
+                    <button type="button" class="open-letter" id="open-letter" aria-expanded="false" aria-haspopup="dialog" aria-controls="letter-dialog">Open your letter <span aria-hidden="true">↗</span></button>
+                  </div>
+                </div>
 
                 <div class="contact-info">
+                    <p class="mail-status" id="mail-status" role="status" aria-live="polite">Click the envelope to pull out your card.</p>
                     <p class="studio">JARO ANIMATION STUDIO</p>
                     <h2>Let’s talk.</h2>
                     <p>Have a question, an idea, or a story waiting to be animated? We would love to hear from you.</p>
@@ -150,16 +161,22 @@
                             <p>Monday - Friday<br>9:00 AM - 5:00 PM</p>
                         </div>
                     </div>
+                </div>
             </section>
             <footer id="footer">
             <p>&copy; 2026 Jaro Animation Studio | All Rights Reserved</p>
             </footer>
     </main>
+    <dialog class="letter-dialog" id="letter-dialog" aria-labelledby="letter-title">
+        <div class="letter-toolbar">
+            <span>A LETTER TO JARO</span>
+            <button type="button" id="close-letter">Close letter <span aria-hidden="true">×</span></button>
+        </div>
+    </dialog>
 </body>
 </html>
 
     
-
 
 
 
